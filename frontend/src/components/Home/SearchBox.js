@@ -6,9 +6,9 @@ const SearchBox = (props) => {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <div className="d-flex flex-row pb-4">
+    <div id="search-box" className="flex-fill mr-2">
       <form
-        className="input-group input-group-sm"
+        className="input-group"
         onSubmit={(event) => {
           event.preventDefault();
           props.onSubmit(
@@ -18,23 +18,21 @@ const SearchBox = (props) => {
           );
         }}
       >
-        <input
-          className="mr-4"
-          type="text"
-          placeholder="Search title"
-          onChange={(event) => setSearchValue(event.target.value)}
-        />
-        <button
-          className="btn btn-sml btn-primary"
-          type="submit"
-          style={{
-            border: 0,
-            background: "linear-gradient(90deg, #4683CA -3.21%, #AF93F2 100%)",
-            borderRadius: "5px",
-          }}
-        >
-          Send
-        </button>
+        <fieldset className="flex-fill">
+          <div className="input-group">
+            <input
+              className="form-control form-control-md"
+              type="text"
+              placeholder="What is it that you truly desire?"
+              onChange={(event) => setSearchValue(event.target.value)}
+            />
+            <div className="input-group-prepend">
+              <span className="input-group-text" style={{ background: null }}>
+                <i className="bi bi-search text-secondary"></i>
+              </span>
+            </div>
+          </div>
+        </fieldset>
       </form>
     </div>
   );
