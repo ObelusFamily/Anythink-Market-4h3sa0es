@@ -5,19 +5,18 @@ import agent from "../../agent";
 const SearchBox = (props) => {
   const [searchValue, setSearchValue] = useState("");
 
-
   const onSearchTitle = (event) => {
     event.preventDefault();
-    let value = event.target.value
-    if (value.length >= 3 || (searchValue.length > value.length)) {
+    let value = event.target.value;
+    if (value.length >= 3 || searchValue.length > value.length) {
       props.onSubmit(
         value,
         (page) => agent.Items.byTitle(value, page),
         agent.Items.byTitle(value)
       );
     }
-    setSearchValue(value)
-  }
+    setSearchValue(value);
+  };
 
   return (
     <div id="search-box" className="flex-fill mr-2">
