@@ -19,11 +19,12 @@ const SearchBox = (props) => {
   };
 
   return (
-    <div id="search-box" className="flex-fill mr-2">
+    <div className="flex-fill mr-2">
       <fieldset className="flex-fill">
         <div className="input-group">
           <input
             className="form-control form-control-md"
+            id="search-box"
             type="text"
             placeholder="What is it that you truly desire?"
             onChange={(event) => onSearchTitle(event)}

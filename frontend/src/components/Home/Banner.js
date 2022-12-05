@@ -13,7 +13,7 @@ const Banner = (props) => {
             {" "}
             get
           </span>
-          <SearchBox id="search-box" onSubmit={props.onSearchTitle} />
+          <SearchBox onSubmit={props.onSearchTitle} />
           <span>the cool stuff.</span>
         </div>
       </div>
