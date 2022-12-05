@@ -2,8 +2,7 @@ import ItemList from "../ItemList";
 import React from "react";
 import agent from "../../agent";
 import { connect } from "react-redux";
-import { CHANGE_TAB, TITLE_SEARCH } from "../../constants/actionTypes";
-import SearchBox from "./SearchBox";
+import { CHANGE_TAB } from "../../constants/actionTypes";
 
 const YourFeedTab = (props) => {
   if (props.token) {
@@ -68,15 +67,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onTabClick: (tab, pager, payload) =>
     dispatch({ type: CHANGE_TAB, tab, pager, payload }),
-  onSearchTitle: (searchValue, pager, payload) =>
-    dispatch({ type: TITLE_SEARCH, searchValue, pager, payload }),
 });
 
 const MainView = (props) => {
   return (
     <div>
       <div className="feed-toggle">
-        <SearchBox onSubmit={props.onSearchTitle} />
         <ul className="nav nav-tabs">
           <YourFeedTab
             token={props.token}
@@ -85,7 +81,6 @@ const MainView = (props) => {
           />
 
           <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
-
           <TagFilterTab tag={props.tag} />
         </ul>
       </div>
