@@ -1,21 +1,30 @@
 import React from "react";
-import { useState } from "react";
 import agent from "../../agent";
+import { connect } from "react-redux";
+import { SET_TITLE_SEARCH, TITLE_SEARCH } from "../../constants/actionTypes";
+
+const mapStateToProps = (state) => ({
+  searchTitle: state.itemList.searchTitle,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setSearchTitle: (searchTitle) =>
+    dispatch({ type: SET_TITLE_SEARCH, searchTitle }),
+  onSearchTitle: (pager, payload) =>
+    dispatch({ type: TITLE_SEARCH, pager, payload }),
+});
 
 const SearchBox = (props) => {
-  const [searchValue, setSearchValue] = useState("");
-
   const onSearchTitle = (event) => {
     event.preventDefault();
     let value = event.target.value;
-    if (value.length >= 3 || searchValue.length > value.length) {
-      props.onSubmit(
-        value,
+    if (value.length >= 3 || props.searchTitle.length > value.length) {
+      props.onSearchTitle(
         (page) => agent.Items.byTitle(value, page),
         agent.Items.byTitle(value)
       );
     }
-    setSearchValue(value);
+    props.setSearchTitle(value);
   };
 
   return (
@@ -40,4 +49,4 @@ const SearchBox = (props) => {
   );
 };
 
-export default SearchBox;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);
